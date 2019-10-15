@@ -19,7 +19,7 @@ class ScreenButton:
         if self.pos[1] + self.size[1] < pyxel.mouse_y:
             judge = False
         if judge == True:
-            pyxel.rect(self.pos[0], self.pos[1], self.size[0],self.size[1], self.colors[0])
+            pyxel.rect(self.pos[0]-1, self.pos[1], self.size[0],self.size[1], self.colors[0])
         else:
             pyxel.rect(self.pos[0]-1, self.pos[1], self.size[0],self.size[1], self.colors[1])
         pyxel.text(self.pos[0], self.pos[1], self.text[0], self.text[1])

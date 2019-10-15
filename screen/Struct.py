@@ -54,7 +54,7 @@ class TextStruct:
 
     @property
     def length(self):
-        return self.__name
+        return self.__length
 
     @property
     def size(self):
