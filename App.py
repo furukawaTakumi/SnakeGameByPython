@@ -1,12 +1,13 @@
 import pyxel
-from screen.StartScreen import StartScreen
+from screen.Screen import Screen
+from screen.ScreenCreator import CreateStartScreen
 
 class App:
     def __init__(self):
         pyxel.init(160, 120)
         pyxel.mouse(True)
 
-        self.startScreen = StartScreen()
+        self.startScreen = CreateStartScreen()
         pyxel.run(self.update, self.draw)
         pass
 
