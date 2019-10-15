@@ -1,32 +1,28 @@
 import pyxel
 
 class ScreenButton:
-    # size = (width, height)
-    # btn_col = (btn_col, btn_col_on_mouse)
-    # point = (x,y)
-    # text = (str,txt_col)
-    def __init__(self, size, btn_col, point, txt):
-        self.size = size
-        self.colors = btn_col
-        self.position = point
-        self.text = txt
+    def __init__(self, button_struct, position):
+        self.size = button_struct.size
+        self.colors = button_struct.back_cols
+        self.pos = position
+        self.text = (button_struct.name, button_struct.name_col)
         pass
 
     def __isOnMouse(self):
         judge = True
-        if self.position[0] > pyxel.mouse_x:
+        if self.pos[0] > pyxel.mouse_x:
             judge = False
-        if self.position[0] + self.size[0] < pyxel.mouse_x:
+        if self.pos[0] + self.size[0] < pyxel.mouse_x:
             judge = False
-        if self.position[1] > pyxel.mouse_y:
+        if self.pos[1] > pyxel.mouse_y:
             judge = False
-        if self.position[1] + self.size[1] < pyxel.mouse_y:
+        if self.pos[1] + self.size[1] < pyxel.mouse_y:
             judge = False
         if judge == True:
-            pyxel.rect(self.position[0], self.position[1], self.size[0],self.size[1], self.colors[0])
+            pyxel.rect(self.pos[0], self.pos[1], self.size[0],self.size[1], self.colors[0])
         else:
-            pyxel.rect(self.position[0], self.position[1], self.size[0],self.size[1], self.colors[1])
-        pyxel.text(self.position[0], self.position[1], self.text[0], self.text[1])
+            pyxel.rect(self.pos[0]-1, self.pos[1], self.size[0],self.size[1], self.colors[1])
+        pyxel.text(self.pos[0], self.pos[1], self.text[0], self.text[1])
         return judge
 
     def isClicked(self):
