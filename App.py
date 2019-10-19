@@ -8,7 +8,7 @@ resourse_path = "asset/course.pyxres"
 
 class App:
     def __init__(self):
-        pyxel.init(130, 90,border_width=0, fps=30)
+        pyxel.init(130, 90,border_width=4, fps=30)
         pyxel.mouse(True)
         pyxel.load(resourse_path)
         self.sna = Snake({"x": 0, "y": 0})
