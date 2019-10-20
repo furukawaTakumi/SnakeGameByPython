@@ -14,7 +14,7 @@ class App:
         self.sna = Snake({"x": 0, "y": 0})
         self.now_status = GameStatus.START
         self.startScreen = CreateStartScreen()
-        self.field = Field((130,90))
+        self.field = Field((16,11))
         pyxel.run(self.update, self.draw)
         pass
 
