@@ -10,7 +10,7 @@ class SnakeHead():
         pass
 
     @property
-    def pos(self):
+    def position(self):
         return self.__pos
 
     def Draw(self):
