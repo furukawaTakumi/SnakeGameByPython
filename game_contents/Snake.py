@@ -16,7 +16,7 @@ class Snake():
         n = len( self.body )
         for i in range(n-1):
             before_pos = self.body[n-i].position
-
+            # 次回、ケツからポジションを更新していく処理を記述する
 
 
 
