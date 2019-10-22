@@ -17,7 +17,15 @@ class SnakeHead():
         pyxel.blt(self.__pos["x"], self.__pos["y"], 0, self.__picture_num*8, 0, 8, 8, 15)
         pass
 
-    def Update(self):
+    def UpdatePosition(self):
+        self.__vector = self.__selected_vec
+        self.__pos["x"] += self.__vector["x"] * 8
+        self.__pos["y"] += self.__vector["y"] * 8
+
+    """
+    ユーザからの指示を受け付けるメソッド
+    """
+    def RespondToDirect(self):
         x = self.__vector["x"]
         y = self.__vector["y"]
         if pyxel.btn(pyxel.KEY_RIGHT):
@@ -47,9 +55,4 @@ class SnakeHead():
             if x == 0 and y == -1:
                 self.__selected_vec = {"x":-1 , "y":0 }
                 self.__picture_num = 5;
-
-        if pyxel.frame_count % 16 == 0:
-            self.__vector = self.__selected_vec
-            self.__pos["x"] += self.__vector["x"] * 8
-            self.__pos["y"] += self.__vector["y"] * 8
         pass

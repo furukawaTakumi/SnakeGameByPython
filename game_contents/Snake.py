@@ -2,26 +2,31 @@
 import pyxel
 from .SnakeBody import SnakeBody
 from .SnakeHead import SnakeHead
+from .BodyColor import BodyColor as bColor
 
 class Snake():
     def __init__(self, pos):
         self.head = SnakeHead( pos )
         self.body = []
+        self.growth_flag = False
         pass
 
-    def Update(self):
-        before_head_pos = self.head.position
-        self.head.Update()
+    def RespondToDirect(self):
+        self.head.RespondToDirect()
 
-        n = len( self.body )
-        for i in range(n-1):
-            before_pos = self.body[n-i].position
-            # 次回、ケツからポジションを更新していく処理を記述する
+    def UpdatePosition(self):
+        if pyxel.frame_count % 16 == 0:
+            n = len( self.body )
+            if 0 < len(self.body):
+                for i in range(n-1, 1, -1):
+                    self.body[i].position = self.body[i-1].position
+                self.body[0] = self.head.position
+            self.head.UpdatePosition()
+            if self.growth_flag:
+                self.__growth()
+                self.growth_flag = False
 
-
-
-
-    def Draw(self):
+    def DrawBody(self):
         self.head.Draw()
         for a_body in self.body:
             a_body.Draw()
@@ -34,5 +39,12 @@ class Snake():
             res.append(a_body.position)
         return res
 
-    def Growth(self):
+    def __growth(self, pos):
+        new_body_color = bColor.NONE
+        if bColor.YELLOW == self.body[len(self.body)-1].color:
+            new_body_color = bColor.BLUE
+        else:
+            new_body_color = bColor.YELLOW
+        new_body = SnakeBody( pos, new_body_color )
+        self.body.append(new_body)
         pass

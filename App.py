@@ -19,8 +19,8 @@ class App:
         pass
 
     def update(self):
-        self.sna.Update()
-        self.sna.Growth()
+        self.sna.UpdatePosition()
+        # self.sna.Growth()
         pass
 
     def draw(self):
@@ -33,7 +33,8 @@ class App:
                 self.now_status = GameStatus.GAME
 
         elif self.now_status == GameStatus.GAME:
-            self.sna.Draw()
+            self.sna.RespondToDirect()
+            self.sna.DrawBody()
 
             pass
         elif self.now_status == GameStatus.GAMEOVER:
