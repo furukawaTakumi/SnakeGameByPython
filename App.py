@@ -15,12 +15,20 @@ class App:
         self.now_status = GameStatus.START
         self.startScreen = CreateStartScreen()
         self.field = Field((16,11))
+
+        self.flag = True
+
         pyxel.run(self.update, self.draw)
         pass
 
     def update(self):
-        self.sna.UpdatePosition()
-        # self.sna.Growth()
+        if self.now_status == GameStatus.GAME:
+            self.sna.RespondToDirect()
+            self.sna.UpdatePosition()
+
+            if pyxel.btn(pyxel.KEY_SPACE) and self.flag:
+                self.sna.Growth()
+                self.flag = False
         pass
 
     def draw(self):
@@ -33,7 +41,6 @@ class App:
                 self.now_status = GameStatus.GAME
 
         elif self.now_status == GameStatus.GAME:
-            self.sna.RespondToDirect()
             self.sna.DrawBody()
 
             pass
