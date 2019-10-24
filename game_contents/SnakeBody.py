@@ -10,6 +10,10 @@ class SnakeBody():
         pass
 
     @property
+    def body_parts(self):
+        return self.__body
+
+    @property
     def isGrowthed(self):
         return self.__growthed_flag
 
@@ -25,13 +29,15 @@ class SnakeBody():
         n = len(self.__body) - 1
         for i in range(n-1, 1, -1): # 後ろから更新する
             self.__body[i].position = self.__body[i-1].position
-        self.__body[0] = new_pos
+        # 1frame目は良くても、2frame目でheadと場所が同じになる。
+        self.__body[0].position = new_pos
 
-    def Growth(self):
+    def Growth(self, head_pos):
         parts = None
         if 0 == len( self.__body ) % 2:
-            parts = BodyParts( bColor.YELLOW )
+            parts = BodyParts( head_pos, bColor.YELLOW )
         else:
-            parts = BodyParts( bColor.BLUE )
+            parts = BodyParts( head_pos, bColor.BLUE )
 
+        self.__body.append(parts)
         self.__growthed_flag = True

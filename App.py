@@ -23,12 +23,11 @@ class App:
 
     def update(self):
         if self.now_status == GameStatus.GAME:
-            self.sna.RespondToDirect()
-            self.sna.UpdatePosition()
-
             if pyxel.btn(pyxel.KEY_SPACE) and self.flag:
                 self.sna.Growth()
                 self.flag = False
+            self.sna.RespondToDirect()
+            self.sna.UpdatePosition()
         pass
 
     def draw(self):

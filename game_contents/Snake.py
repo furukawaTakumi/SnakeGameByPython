@@ -15,18 +15,23 @@ class Snake():
 
     def UpdatePosition(self):
         if pyxel.frame_count % 16 == 0:
-            self.__head.UpdatePosition()
             self.__body.UpdatePosition( self.__head.position )
+            print("a : ", self.GetPosition() )
+            self.__head.UpdatePosition()
+            print("b : ", self.GetPosition() )
 
 
     def DrawBody(self):
-        self.__head.Draw()
         self.__body.Draw()
+        self.__head.Draw()
         pass
+
+    def Growth(self):
+        self.__body.Growth(self.__head.position)
 
     def GetPosition(self):
         res = list()
-        res.append(self.head.position)
-        for a_body in self.body:
+        res.append(self.__head.position)
+        for a_body in self.__body.body_parts:
             res.append(a_body.position)
         return res

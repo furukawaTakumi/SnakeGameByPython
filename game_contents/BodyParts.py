@@ -9,13 +9,8 @@ class BodyParts:
         self.__set_col(color)
         pass
 
-    def __init__(self, color):
-        self.position = {"x":0, "y":0 }
-        self.__set_col(color)
-
-
     def Draw(self):
-        pyxel.blt(self.position["x"], self.position["y"], self.__col_pos["x"], self.__col_pos["y"], 0, 8, 8)
+        pyxel.blt(self.position["x"], self.position["y"], self.__col_pos["x"], self.__col_pos["y"], 0, 8, 8,15)
 
     def __set_col(self, color):
         if bColor.BLUE == color:
