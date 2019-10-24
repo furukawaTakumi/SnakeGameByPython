@@ -1,5 +1,6 @@
 
 import pyxel
+from copy import deepcopy
 from .BodyParts import BodyParts
 from .BodyColor import BodyColor as bColor
 
@@ -27,17 +28,16 @@ class SnakeBody():
             return
 
         n = len(self.__body) - 1
+        self.__body[n].position = deepcopy(new_pos)
         for i in range(n-1, 1, -1): # 後ろから更新する
             self.__body[i].position = self.__body[i-1].position
-        # 1frame目は良くても、2frame目でheadと場所が同じになる。
-        self.__body[0].position = new_pos
 
     def Growth(self, head_pos):
         parts = None
         if 0 == len( self.__body ) % 2:
-            parts = BodyParts( head_pos, bColor.YELLOW )
+            parts = BodyParts( deepcopy(head_pos), bColor.YELLOW )
         else:
-            parts = BodyParts( head_pos, bColor.BLUE )
+            parts = BodyParts( deepcopy(head_pos), bColor.BLUE )
 
         self.__body.append(parts)
         self.__growthed_flag = True

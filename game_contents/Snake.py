@@ -16,10 +16,7 @@ class Snake():
     def UpdatePosition(self):
         if pyxel.frame_count % 16 == 0:
             self.__body.UpdatePosition( self.__head.position )
-            print("a : ", self.GetPosition() )
             self.__head.UpdatePosition()
-            print("b : ", self.GetPosition() )
-
 
     def DrawBody(self):
         self.__body.Draw()
