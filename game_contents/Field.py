@@ -4,7 +4,7 @@ from .ParcelState import ParcelState
 
 class Field:
     def __init__(self, size):
-        self.size = size
+        self.size = size # (行,列)
 
         # Field ParcelState Set
         self.block_list = list(list())
@@ -23,9 +23,9 @@ class Field:
         pass
 
     def __set_field(self):
-        for i in range(0,self.size[1]):
+        for i in range(0, self.size[0]):
             line_temp = list()
-            for j in range(0,self.size[0]):
+            for j in range(0, self.size[1]):
                 if i == 0:
                     line_temp.append(ParcelState.ABYSS)
                 elif i == self.size[1]-1:
