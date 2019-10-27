@@ -28,11 +28,11 @@ class Field:
             for j in range(0, self.size[1]):
                 if i == 0:
                     line_temp.append(ParcelState.ABYSS)
-                elif i == self.size[1]-1:
+                elif i == self.size[0]-1:
                     line_temp.append(ParcelState.ABYSS)
                 elif j == 0:
                     line_temp.append(ParcelState.ABYSS)
-                elif j == self.size[0]-1:
+                elif j == self.size[1]-1:
                     line_temp.append(ParcelState.ABYSS)
                 else:
                     line_temp.append(ParcelState.NONE)
