@@ -34,4 +34,20 @@ def test_field_set_field():
 
     print("Field.set_field() test pass!")
 
+
+def test_SetParcelState():
+    field.SetParcelState([3,5], pState.SNAKE)
+    assert field.block_list[3][5] == pState.SNAKE, "block_listに値が正常に設定できていません"
+    print("Field.SetParcelState() test pass!")
+
+def test_ResetField():
+    snake_pos = [[3,5], [4,5], [row-1,column-1],[0,0]]
+    field.ResetField(snake_pos)
+    for check_pos in snake_pos:
+        assert field.block_list[check_pos[0]][check_pos[1]] == pState.SNAKE, "ResetField()でblock_listに値が正常に設定できていません"
+
+    print("Field.ResetParcelState() test pass!")
+
 test_field_set_field()
+test_SetParcelState()
+test_ResetField()

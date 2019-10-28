@@ -11,7 +11,7 @@ class Field:
         self.__set_field()
 
     def SetParcelState(self, pos, state_num):
-        self.block_list[pos[0],pos[1]] = state_num
+        self.block_list[pos[0]][pos[1]] = state_num
 
     def Draw(self):
         pyxel.bltm(0, 0, 0, 0, 0, self.size[0]*8, self.size[1]*8)
