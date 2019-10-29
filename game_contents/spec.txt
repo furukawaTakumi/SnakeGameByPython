@@ -1,6 +1,8 @@
-fieldrow,11
-fieldcolmun,16
-init_snake_pos_x,3
-init_snake_pos_y,2
-init_snake_vec_x,1
-init_snake_vec_y,0
+fieldrow,int,11
+fieldcolmun,int,16
+init_snake_pos_x,int,3
+init_snake_pos_y,int,2
+init_snake_vec_x,int,1
+init_snake_vec_y,int,0
+testdata_int,int,0
+testdata_str,str,0

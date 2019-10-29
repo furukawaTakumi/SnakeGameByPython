@@ -7,8 +7,14 @@ class SpecReader():
             lines = reader.readlines()
             for line in lines:
                 key = line.split(',')[0]
-                val = line.split(',')[1]
-                self.__spec[key] = val
+                val_type = line.split(',')[1]
+                val = line.split(',')[2]
+                if val_type == "int":
+                    self.__spec[key] = int(val)
+                elif val_type == "str":
+                    self.__spec[key] = val.split('\n')[0]
+                else:
+                    raise Exception("such value type dose not exists!")
 
     @property
     def spec(self):
