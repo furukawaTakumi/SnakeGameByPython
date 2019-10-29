@@ -1,11 +1,12 @@
 
 import pyxel
+from copy import deepcopy
 
 class SnakeHead():
-    def __init__(self, pos):
+    def __init__(self, pos, vec):
         self.__pos = pos
-        self.__vector = {"x": 1, "y": 0}
-        self.__selected_vec = {"x": 1, "y": 0}
+        self.__vector = deepcopy(vec)
+        self.__selected_vec = deepcopy(vec)
         self.__picture_num = 3;
         pass
 

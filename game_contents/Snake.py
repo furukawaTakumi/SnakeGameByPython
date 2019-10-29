@@ -5,8 +5,8 @@ from .SnakeHead import SnakeHead
 from .BodyColor import BodyColor as bColor
 
 class Snake():
-    def __init__(self, pos):
-        self.__head = SnakeHead( pos )
+    def __init__(self, pos, vec):
+        self.__head = SnakeHead( pos, vec )
         self.__body = SnakeBody()
         pass
 

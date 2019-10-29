@@ -2,3 +2,5 @@ fieldrow,11
 fieldcolmun,16
 init_snake_pos_x,3
 init_snake_pos_y,2
+init_snake_vec_x,1
+init_snake_vec_y,0
