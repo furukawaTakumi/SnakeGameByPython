@@ -6,9 +6,11 @@ from pprint import pprint
 import re
 from game_contents.Field import Field
 from game_contents.ParcelState import ParcelState as pState
+from game_contents.SpecReader import SpecReader
 
-row = 11  # いずれファイルからコースのデータなどを読み込むようにしたい
-column = 16
+reader = SpecReader("../game_contents/spec.txt")
+row = reader.spec["fieldrow"]
+column = reader.spec["fieldcolmun"]
 field = Field( (row,column) )
 
 def test_field_set_field():
@@ -48,6 +50,7 @@ def test_ResetField():
 
     print("Field.ResetParcelState() test pass!")
 
-test_field_set_field()
-test_SetParcelState()
-test_ResetField()
+def DoneAllTest():
+    test_field_set_field()
+    test_SetParcelState()
+    test_ResetField()
