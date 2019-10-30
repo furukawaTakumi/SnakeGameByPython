@@ -1,9 +1,9 @@
 
 class SpecReader():
-    def __init__(self, file_path):
+    def __init__(self, file_name):
         self.__spec = {}
 
-        with open(file_path, mode="r") as reader:
+        with open("../asset/" + file_name, mode="r") as reader:
             lines = reader.readlines()
             for line in lines:
                 key = line.split(',')[0]

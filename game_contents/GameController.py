@@ -17,5 +17,5 @@ class GameController():
         }
         self.__snake = Snake(snake_pos, snake_vec)
 
-        field_size = ( reader.spec["fieldrow"], reader.spec["fieldcolmun"] )
-        self.__field = Field(field_size)
+        self.__field_size = ( reader.spec["fieldrow"], reader.spec["fieldcolmun"] )
+        self.__field = Field(self.__field_size)
