@@ -6,3 +6,4 @@ class ParcelState(IntEnum):
     NONE = 2
     SNAKE = 3
     FEED = 4
+    UNDEFINE = 99

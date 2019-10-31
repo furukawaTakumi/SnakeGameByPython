@@ -13,11 +13,14 @@ row = reader.spec["fieldrow"]
 column = reader.spec["fieldcolmun"]
 field = Field( (row,column) )
 
-def test_field_set_field():
-    # サイズのチェック
+def sizeCheck():
     assert row == len(field.block_list), "行の数が{}ではありません".format(str(row))
     for r in range(0,row):
         assert column == len(field.block_list[r]), "{}行目の列の数が{}ではありません".format(str(r), str(column))
+
+def test_field_set_field():
+    # サイズのチェック
+    sizeCheck()
 
     # 内部の値が正しいかをチェックしていく
     # まずテストするデータの作成
@@ -37,14 +40,22 @@ def test_field_set_field():
     print("Field.set_field() test pass!")
 
 
-def test_SetParcelState():
-    field.SetParcelState([3,5], pState.SNAKE)
-    assert field.block_list[3][5] == pState.SNAKE, "block_listに値が正常に設定できていません"
-    print("Field.SetParcelState() test pass!")
+def test_CreateFeed():
+    field.CreateFeed()
+    sizeCheck()
+
+    passCount = 0
+    for i in range(0,row):
+        for j in range(0, column):
+            if field.block_list[i][j] == pState.FEED:
+                passCount += 1
+    assert passCount == 1, "餌が規定の範囲に生成されていません"
+    print("Field.CreateFeed() test pass!")
 
 def test_ResetField():
-    snake_pos = [[3,5], [4,5], [row-1,column-1],[0,0]]
+    snake_pos = [[3,5], [4,5], [row-1,column-1],[1,1]]
     field.ResetField(snake_pos)
+    sizeCheck()
     for check_pos in snake_pos:
         assert field.block_list[check_pos[0]][check_pos[1]] == pState.SNAKE, "ResetField()でblock_listに値が正常に設定できていません"
 
@@ -52,5 +63,5 @@ def test_ResetField():
 
 def DoneAllTest():
     test_field_set_field()
-    test_SetParcelState()
     test_ResetField()
+    test_CreateFeed()
