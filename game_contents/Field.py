@@ -34,7 +34,7 @@ class Field:
         self.block_list[self.feed_pos[0]][self.feed_pos[1]] = ParcelState.FEED
 
     def DeleteFeed(self):
-        if __range_check(self.feed_pos, 1):
+        if self.__range_check(self.feed_pos, 1):
             self.block_list[self.feed_pos[0]][self.feed_pos[1]] = ParcelState.NONE
             self.feed_pos[0] = -1
             self.feed_pos[1] = -1

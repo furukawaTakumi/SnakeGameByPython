@@ -4,6 +4,7 @@ sys.path.append('../')
 
 from pprint import pprint
 import re
+import copy
 from game_contents.Field import Field
 from game_contents.ParcelState import ParcelState as pState
 from game_contents.SpecReader import SpecReader
@@ -39,6 +40,9 @@ def test_field_set_field():
 
     print("Field.set_field() test pass!")
 
+def test_FeedCreateAndDelete():
+    test_CreateFeed()
+    test_DeleteFeed()
 
 def test_CreateFeed():
     field.CreateFeed()
@@ -52,6 +56,17 @@ def test_CreateFeed():
     assert passCount == 1, "餌が規定の範囲に生成されていません"
     print("Field.CreateFeed() test pass!")
 
+def test_DeleteFeed():
+    sizeCheck()
+    feed_pos = copy.deepcopy( field.feed_pos )
+    assert field.block_list[feed_pos[0]][feed_pos[1]] == pState.FEED, "feed_posに餌が設定されていません"
+    field.DeleteFeed()
+    assert field.block_list[feed_pos[0]][feed_pos[1]] == pState.NONE, "feed_posの餌が削除されていません"
+    assert field.feed_pos[0] == -1, "feed_pos[0]がリセットされていません"
+    assert field.feed_pos[1] == -1, "feed_pos[1]がリセットされていません"
+    print("Field.DeleteFeed() test pass!")
+
+
 def test_ResetField():
     snake_pos = [[3,5], [4,5], [row-1,column-1],[1,1]]
     field.ResetField(snake_pos)
@@ -64,4 +79,4 @@ def test_ResetField():
 def DoneAllTest():
     test_field_set_field()
     test_ResetField()
-    test_CreateFeed()
+    test_FeedCreateAndDelete()
