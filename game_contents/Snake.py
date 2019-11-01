@@ -14,9 +14,8 @@ class Snake():
         self.__head.RespondToDirect()
 
     def UpdatePosition(self):
-        if pyxel.frame_count % 16 == 0:
-            self.__body.UpdatePosition( self.__head.position )
-            self.__head.UpdatePosition()
+        self.__body.UpdatePosition( self.__head.position )
+        self.__head.UpdatePosition()
 
     def DrawBody(self):
         self.__body.Draw()
