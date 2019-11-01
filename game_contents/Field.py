@@ -19,7 +19,7 @@ class Field:
 
     def Draw(self):
         pyxel.bltm(0, 0, 0, 0, 0, self.size[0]*8, self.size[1]*8)
-        if self.__range_check(feed_pos, 1):
+        if self.__range_check(self.feed_pos, 1):
             pyxel.blt(self.feed_pos[0], self.feed_pos[1], 0, 6*8, 0, 8, 8)
 
     def CreateFeed(self):
