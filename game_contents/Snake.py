@@ -25,7 +25,7 @@ class Snake():
     def Growth(self):
         self.__body.Growth(self.__head.position)
 
-    def GetPosition(self):
+    def CollectSnakeParts(self):
         res = list()
         res.append(self.__head.position)
         for a_body in self.__body.body_parts:
