@@ -3,6 +3,7 @@ import pyxel
 from .SpecReader import SpecReader
 from .Snake import Snake
 from .Field import Field
+from .Score import Score
 from .ParcelState import ParcelState as pState
 
 class GameController():
@@ -20,6 +21,7 @@ class GameController():
 
         field_size = ( reader.spec["fieldrow"], reader.spec["fieldcolmun"] )
         self.__field = Field(field_size)
+        self.__score = Score()
 
     def UpdateData(self):
         self.__snake.RespondToDirect()
@@ -29,3 +31,4 @@ class GameController():
     def UpdateDisplay(self):
         self.__field.Draw()
         self.__snake.DrawBody()
+        self.__score.DrawScore()
