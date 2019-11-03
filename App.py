@@ -28,6 +28,7 @@ class App:
             self.startScreen.ScreenUpdate()
             if self.startScreen.isBtnClicked():
                 self.now_status = GameStatus.GAME
+                pyxel.mouse(False)
 
         elif self.now_status == GameStatus.GAME:
             self.gameController.UpdateDisplay()

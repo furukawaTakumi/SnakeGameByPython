@@ -29,6 +29,8 @@ class GameController():
         self.__snake.RespondToDirect()
         if pyxel.frame_count % 16 == 0:
             self.__snake.UpdatePosition()
+            self.__collideSnakeAndFeed()
+
         if not self.__feed.is_exist:
             self.__feed.CreateFeed(self.__snake.CollectSnakeParts(), self.__field.size )
 
@@ -37,3 +39,11 @@ class GameController():
         self.__snake.DrawBody()
         self.__score.DrawScore()
         self.__feed.Draw()
+
+    def __collideSnakeAndFeed(self):
+        print( self.__snake.GetHeadPos() )
+        if self.__feed.feed_pos[0] != self.__snake.GetHeadPos()["x"]:
+            pass
+        if self.__feed.feed_pos[1] != self.__snake.GetHeadPos()["y"]:
+            pass
+        self.__snake.Growth()

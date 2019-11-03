@@ -10,6 +10,9 @@ class Snake():
         self.__body = SnakeBody()
         pass
 
+    def GetHeadPos(self):
+        return self.__head.position
+
     def RespondToDirect(self):
         self.__head.RespondToDirect()
 
