@@ -1,4 +1,5 @@
-class Score:
+
+class ScoreBoard:
     def __init__(self):
         self.__now_score = 0
 

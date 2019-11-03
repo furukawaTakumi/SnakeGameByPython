@@ -1,12 +1,12 @@
 import pyxel
 from .Screen import Screen
 from .Struct import TextStruct, ButtonStruct
-from .Score import Score
+from .ScoreBoard import ScoreBoard
 
 class StartScreen(Screen):
     def __init__(self, title, button):
         super().__init__(title, button)
-        self.score = Score()
+        self.score = ScoreBoard()
         pass
 
     def ScreenUpdate(self):
