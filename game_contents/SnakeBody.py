@@ -28,16 +28,18 @@ class SnakeBody():
             return
 
         n = len(self.__body) - 1
-        self.__body[n].position = deepcopy(new_pos)
-        for i in range(n-1, 1, -1): # 後ろから更新する
+        for i in range(n, 0, -1): # 後ろから更新する
             self.__body[i].position = self.__body[i-1].position
+        self.__body[0].position = deepcopy(new_pos)
 
     def Growth(self, head_pos):
         parts = None
-        if 0 == len( self.__body ) % 2:
+        if 0 == len( self.__body ):
             parts = BodyParts( deepcopy(head_pos), bColor.YELLOW )
+        elif 0 == len( self.__body ) % 2:
+            parts = BodyParts( deepcopy(self.__body[len(self.__body)-1].position), bColor.YELLOW )
         else:
-            parts = BodyParts( deepcopy(head_pos), bColor.BLUE )
+            parts = BodyParts( deepcopy(self.__body[len(self.__body)-1].position), bColor.BLUE )
 
         self.__body.append(parts)
         self.__growthed_flag = True
