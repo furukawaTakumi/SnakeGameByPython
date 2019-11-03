@@ -3,6 +3,7 @@ import pyxel
 from .SpecReader import SpecReader
 from .Snake import Snake
 from .Field import Field
+from .Feed import Feed
 from .Score import Score
 from .ParcelState import ParcelState as pState
 
@@ -21,14 +22,18 @@ class GameController():
 
         field_size = ( reader.spec["fieldrow"], reader.spec["fieldcolmun"] )
         self.__field = Field(field_size)
+        self.__feed = Feed()
         self.__score = Score()
 
     def UpdateData(self):
         self.__snake.RespondToDirect()
         if pyxel.frame_count % 16 == 0:
             self.__snake.UpdatePosition()
+        if not self.__feed.is_exist:
+            self.__feed.CreateFeed(self.__snake.CollectSnakeParts(), self.__field.size )
 
     def UpdateDisplay(self):
         self.__field.Draw()
         self.__snake.DrawBody()
         self.__score.DrawScore()
+        self.__feed.Draw()
