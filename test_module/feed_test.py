@@ -21,14 +21,16 @@ def test_init():
 
 def test_CreateFeed():
     snake_pos = list()
-    for j in range(0, column-1):
-        for i in range(0, row//2):
+    for j in range(1, column-1):
+        for i in range(1, row//2):
             snake_pos.append( { "x":j*8, "y":i*8 } )
 
     feed.CreateFeed(snake_pos, field_size)
-    for j in range(0, column-1):
-        for i in range(0, row//2):
-            assert feed.feed_pos[0] != j*8 or feed.feed_pos[1] != i*8, "餌を生成してはいけない位置に餌を生成しています(餌の位置{0},{1} )".format(feed.feed_pos[0], feed.feed_pos[1])
+    for j in range(1, column-1):
+        for i in range(1, row//2):
+            assert 1*8 <= feed.feed_pos[0] and feed.feed_pos[0] <= (row - 1)*8, "生成された餌の行範囲が規定の範囲内に収まっていません(生成された行：{})".format(feed.feed_pos[0])
+            assert 1*8 <= feed.feed_pos[1] and feed.feed_pos[1] <= (column - 1)*8, "生成された餌の列範囲が規定の範囲内に収まっていません(生成された列：{})".format(feed.feed_pos[1])
+            assert feed.feed_pos[1] != j*8 or feed.feed_pos[0] != i*8, "餌を生成してはいけない位置に餌を生成しています(餌の位置{0},{1} )".format(feed.feed_pos[0], feed.feed_pos[1])
     assert feed.is_exist, "餌生成フラグがTrueになっていません"
     # print("(餌の位置{0},{1} )".format(feed.feed_pos[0], feed.feed_pos[1]))
 

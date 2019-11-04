@@ -5,7 +5,7 @@ import random
 class Feed:
     def __init__(self):
         self.__is_exist = False
-        self.__feed_pos = [-1,-1]
+        self.__feed_pos = [-1,-1] # 行、列
 
     @property
     def is_exist(self):
@@ -28,7 +28,7 @@ class Feed:
 
             break_flag = True
             for pos in snake_pos:
-                if pos["x"] == self.__feed_pos[0] and pos["y"] == self.__feed_pos[1]:
+                if pos["x"] == self.__feed_pos[1] and pos["y"] == self.__feed_pos[0]:
                     break_flag = False
             if break_flag:
                 break
