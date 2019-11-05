@@ -14,6 +14,9 @@ class SnakeBody():
     def body_parts(self):
         return self.__body
 
+    def getEndPos(self):
+        return self.__body[len(self.__body)-1].position
+
     @property
     def isGrowthed(self):
         return self.__growthed_flag
@@ -28,18 +31,18 @@ class SnakeBody():
             return
 
         n = len(self.__body) - 1
-        for i in range(n, 0, -1): # 後ろから更新する
+        for i in range(n, 0, -1):
             self.__body[i].position = self.__body[i-1].position
         self.__body[0].position = deepcopy(new_pos)
 
-    def Growth(self, head_pos):
+    def Growth(self, before_endpos):
         parts = None
-        if 0 == len( self.__body ):
-            parts = BodyParts( deepcopy(head_pos), bColor.YELLOW )
-        elif 0 == len( self.__body ) % 2:
-            parts = BodyParts( deepcopy(self.__body[len(self.__body)-1].position), bColor.YELLOW )
+        if not len( self.__body ):
+            parts = BodyParts( deepcopy(before_endpos), bColor.YELLOW )
+        elif len( self.__body ) % 2:
+            parts = BodyParts( deepcopy(before_endpos), bColor.BLUE )
         else:
-            parts = BodyParts( deepcopy(self.__body[len(self.__body)-1].position), bColor.BLUE )
+            parts = BodyParts( deepcopy(before_endpos), bColor.YELLOW )
 
         self.__body.append(parts)
         self.__growthed_flag = True

@@ -41,7 +41,6 @@ class GameController():
         self.__feed.Draw()
 
     def __collideSnakeAndFeed(self):
-        print( self.__snake.CollectSnakeParts() )
         if self.__feed.feed_pos[0] == self.__snake.GetHeadPos()["y"]:
             if self.__feed.feed_pos[1] == self.__snake.GetHeadPos()["x"]:
                 self.__snake.Growth()
