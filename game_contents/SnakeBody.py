@@ -46,4 +46,3 @@ class SnakeBody():
 
         self.__body.append(parts)
         self.__growthed_flag = True
-        pyxel.play(0, 16)

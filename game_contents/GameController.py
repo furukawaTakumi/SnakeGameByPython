@@ -46,3 +46,4 @@ class GameController():
                 self.__snake.Growth()
                 self.__score.CountUp()
                 self.__feed.DeleteFeed()
+                pyxel.play(0, 16)
