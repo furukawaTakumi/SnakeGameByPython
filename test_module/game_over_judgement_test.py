@@ -43,7 +43,6 @@ def test_JudgeCollideHeadAndBody():
     assert not GameOverJudgement.JudgeCollideHeadAndBody(sanke_pos), "蛇の体と頭の位置が重なりあっていないのに、メソッドはTrueを返しています"
 
 def DoneAllTest():
-    test_init()
     test_JudgeSnakeOutsideField()
     test_JudgeCollideHeadAndBody()
     pass
