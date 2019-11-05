@@ -19,6 +19,9 @@ class App:
     def update(self):
         if self.now_status == GameStatus.GAME:
             self.gameController.UpdateData()
+            if self.gameController.CheckGameOver():
+                print( self.gameController.CheckGameOver() )
+                self.now_status = GameStatus.GAMEOVER
         pass
 
     def draw(self):

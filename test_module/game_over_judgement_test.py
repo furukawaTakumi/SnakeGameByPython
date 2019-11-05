@@ -11,20 +11,20 @@ field_size = ( spec.spec["fieldrow"], spec.spec["fieldcolmun"] )
 judgement = None
 
 def test_JudgeSnakeOutsideField():
-    for x in range(0,spec.spec["fieldcolmun"]):
+    for x in range(0,spec.spec["fieldcolmun"],8):
         snake_head_pos = {"x":x, "y":0 }
         assert GameOverJudgement.JudgeSnakeOutsideField(snake_head_pos, field_size ), "蛇は場外にいます。蛇の位置：(x,y) = ({0},{1})".format(snake_head_pos["x"], snake_head_pos["y"])
-        snake_head_pos = {"x":x, "y":spec.spec["fieldrow"]-1 }
+        snake_head_pos = {"x":x, "y":(spec.spec["fieldrow"]-1)*8 }
         assert GameOverJudgement.JudgeSnakeOutsideField(snake_head_pos, field_size ), "蛇は場外にいます。蛇の位置：(x,y) = ({0},{1})".format(snake_head_pos["x"], snake_head_pos["y"])
 
-    for y in range(0,spec.spec["fieldrow"]):
+    for y in range(0,spec.spec["fieldrow"],8):
         snake_head_pos = {"x":0, "y":y }
         assert GameOverJudgement.JudgeSnakeOutsideField(snake_head_pos, field_size ), "蛇は場外にいます。蛇の位置：(x,y) = ({0},{1})".format(snake_head_pos["x"], snake_head_pos["y"])
-        snake_head_pos = {"x":spec.spec["fieldcolmun"]-1, "y":y }
+        snake_head_pos = {"x":(spec.spec["fieldcolmun"]-1)*8, "y":y }
         assert GameOverJudgement.JudgeSnakeOutsideField(snake_head_pos, field_size ), "蛇は場外にいます。蛇の位置：(x,y) = ({0},{1})".format(snake_head_pos["x"], snake_head_pos["y"])
 
-    for x in range(1, spec.spec["fieldcolmun"]-1):
-        for y in range(1, spec.spec["fieldrow"]-1):
+    for x in range(8, spec.spec["fieldcolmun"]-1,8):
+        for y in range(8, spec.spec["fieldrow"]-1,8):
             snake_head_pos = {"x":x, "y":y }
             assert not GameOverJudgement.JudgeSnakeOutsideField(snake_head_pos, field_size), "蛇は場内にいます。蛇の位置：(x,y) = ({0},{1})".format(snake_head_pos["x"], snake_head_pos["y"])
 

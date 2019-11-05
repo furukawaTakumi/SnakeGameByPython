@@ -6,6 +6,7 @@ from .Field import Field
 from .Feed import Feed
 from .Score import Score
 from .ParcelState import ParcelState as pState
+from .GameOverJudgement import GameOverJudgement
 
 class GameController():
     def __init__(self):
@@ -47,3 +48,11 @@ class GameController():
                 self.__score.CountUp()
                 self.__feed.DeleteFeed()
                 pyxel.play(0, 16)
+
+    def CheckGameOver(self):
+        if GameOverJudgement.JudgeSnakeOutsideField(self.__snake.GetHeadPos(), self.__field.size):
+            return True
+
+        if GameOverJudgement.JudgeCollideHeadAndBody(self.__snake.CollectSnakeParts()):
+            return True
+        return False
