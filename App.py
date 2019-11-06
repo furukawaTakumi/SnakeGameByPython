@@ -1,5 +1,6 @@
 import pyxel
 from screen.ScreenCreator import CreateStartScreen
+from screen.ScreenCreator import CreateGameOverScreen
 from GameStatus import GameStatus
 from game_contents.GameController import GameController
 
@@ -12,6 +13,7 @@ class App:
         pyxel.load(resourse_path)
         self.now_status = GameStatus.START
         self.startScreen = CreateStartScreen()
+        self.gameoverScreen = CreateGameOverScreen()
         self.gameController = GameController()
         pyxel.run(self.update, self.draw)
         pass
@@ -37,6 +39,7 @@ class App:
             self.gameController.UpdateDisplay()
 
         elif self.now_status == GameStatus.GAMEOVER:
+            self.gameoverScreen.ScreenUpdate()
             pass
 
         pass
