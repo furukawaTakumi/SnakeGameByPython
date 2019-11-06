@@ -12,11 +12,7 @@ class ScoreBoard:
             for s in file.readlines():
                 templist.append(int(s))
 
-        templist.sort(reverse=True)
-
-        self.__score_list = []
-        for i in range(3):
-            self.__score_list.append(templist[i])
+        self.__score_list = templist
 
     @property
     def score_list(self):

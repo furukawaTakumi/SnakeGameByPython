@@ -22,7 +22,6 @@ class App:
         if self.now_status == GameStatus.GAME:
             self.gameController.UpdateData()
             if self.gameController.CheckGameOver():
-                print( self.gameController.CheckGameOver() )
                 self.now_status = GameStatus.GAMEOVER
         pass
 
@@ -40,6 +39,7 @@ class App:
 
         elif self.now_status == GameStatus.GAMEOVER:
             self.gameoverScreen.ScreenUpdate()
+            pyxel.mouse(True)
             pass
 
         pass

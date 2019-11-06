@@ -52,9 +52,11 @@ class GameController():
     def CheckGameOver(self):
         if GameOverJudgement.JudgeSnakeOutsideField(self.__snake.GetHeadPos(), self.__field.size):
             pyxel.play(0, 17)
+            self.__score.WriteScore("asset/score.txt")
             return True
 
         if GameOverJudgement.JudgeCollideHeadAndBody(self.__snake.CollectSnakeParts()):
             pyxel.play(0, 17)
+            self.__score.WriteScore("asset/score.txt")
             return True
         return False

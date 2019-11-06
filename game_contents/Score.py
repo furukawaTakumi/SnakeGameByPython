@@ -29,6 +29,17 @@ class Score():
     def CountUp(self):
         self.__score += 1
 
+    def CleanUp(self):
+        self.__score = 0
+
     def WriteScore(self, filename):
-        with open(filename, mode='a') as file:
-            file.write( str( self.__score ) + "\n" )
+        score_list = list()
+        with open(filename, mode='r') as file:
+            for line in file.readlines():
+                score_list.append(int(line))
+
+        score_list.append( self.__score )
+        score_list.sort(reverse=True)
+        with open(filename, mode='w') as file:
+            for i in range(0,3):
+                file.write( str( score_list[i] ) + "\n" )

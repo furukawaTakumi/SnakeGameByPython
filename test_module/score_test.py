@@ -23,20 +23,28 @@ def test_CountUp():
         assert score.score == a, "スコアのカウントがおかしいです。期待する値:{0}, 実際の値:{1}".format(a, score.score)
     print("Score.CountUp() test pass!")
 
-def test_WriteScore():
-    score = Score()
-    with open("asset/scoretest.txt", "w") as file:
-        file.write("")
+def test_CleanUp():
+    score.CleanUp()
+    assert score.score == 0, "スコアが0になっていません"
+    print("Score.CleanUp() test pass!")
 
-    for i in range(1,100):
+
+def test_WriteScore():
+    with open("asset/scoretest.txt", "w") as file:
+        file.write("0\n")
+        file.write("0\n")
+        file.write("0\n")
+
+    score.CleanUp()
+    for i in range(0,100):
         score.WriteScore("asset/scoretest.txt")
         score.CountUp()
 
     with open("asset/scoretest.txt", "r") as file:
-        count = 0
+        count = 99
         for line in file.readlines():
             assert count == int(line), "書き込みがうまく行われていません"
-            count += 1
+            count -= 1
     print("Score.WriteScore() test pass!")
 
 
@@ -44,4 +52,5 @@ def test_WriteScore():
 def DoneAllTest():
     test_init()
     test_CountUp()
+    test_CleanUp()
     test_WriteScore()
