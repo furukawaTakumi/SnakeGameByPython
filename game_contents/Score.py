@@ -28,3 +28,7 @@ class Score():
 
     def CountUp(self):
         self.__score += 1
+
+    def WriteScore(self, filename):
+        with open(filename, mode='a') as file:
+            file.write( str( self.__score ) + "\n" )
