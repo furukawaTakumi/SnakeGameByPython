@@ -11,29 +11,13 @@ class GameOverScreen(Screen):
         super().__init__(title, button)
         self.scoreboard = ScoreBoard()
         self.before_score_list = deepcopy( self.scoreboard.score_list )
-        self.new_record_str = ["","",""]
+        self.celebrate_txt = ["You are First!!", "You are Second!!", "You are third!!", ""]
         pass
 
-    def CheckDiff(self):
-        self.scoreboard.LoadScore()
-        for index in range(0, len(self.scoreboard.score_list)):
-            if self.before_score_list[index] != self.scoreboard.score_list[index]:
-                self.new_record_str[index] = "← you recored!!"
-        pass
-
-    def ScreenUpdate(self):
+    def ScreenUpdate(self, score):
         super().ScreenUpdate()
-        self.CheckDiff()
-        first = TextStruct( "1st : " +  str(self.scoreboard.score_list[0]) + self.new_record_str[0], 7 )
-        second = TextStruct( "2nd : " + str(self.scoreboard.score_list[1]) + self.new_record_str[1], 7 )
-        third = TextStruct( "3rd : " + str(self.scoreboard.score_list[2]) + self.new_record_str[2], 7 )
-        self.new_record_str = ["","",""]
-        pos = self.title_pos
-        new_pos = list()
-        new_pos.append( pyxel.width//2 - first.size[0] // 2 )
-        new_pos.append( pos[1] + 15 )
-        pyxel.text( new_pos[0], new_pos[1], first.name, first.col )
-        new_pos[1] += 9
-        pyxel.text( new_pos[0], new_pos[1], second.name, second.col )
-        new_pos[1] += 9
-        pyxel.text( new_pos[0], new_pos[1], third.name, third.col )
+        idx = self.calcDiffScoreIdx(score)
+        celebrate_txt = TextStruct(self.celebrate_txt[idx], 10)
+        myrecord = TextStruct( "record: " + str( score ), 7 )
+        pyxel.text( pyxel.width//2 - myrecord.size[0] // 2, self.title_pos[1]+15, myrecord.name, myrecord.col )
+        pyxel.text( pyxel.width//2 - celebrate_txt.size[0] // 2, self.title_pos[1]+25, celebrate_txt.name, celebrate_txt.col )

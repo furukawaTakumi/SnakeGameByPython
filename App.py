@@ -38,8 +38,12 @@ class App:
             self.gameController.UpdateDisplay()
 
         elif self.now_status == GameStatus.GAMEOVER:
-            self.gameoverScreen.ScreenUpdate()
+            self.gameoverScreen.ScreenUpdate(self.gameController.ScoreWhenGameOver())
             pyxel.mouse(True)
+            if self.gameoverScreen.isBtnClicked():
+                self.now_status = GameStatus.GAME
+                self.gameController = GameController()
+                pyxel.mouse(False)
             pass
 
         pass
