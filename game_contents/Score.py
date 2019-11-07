@@ -8,6 +8,7 @@ class Score():
     def __init__(self):
         self.__score = 0
         self.__disp_str = "SCORE: {}"
+        # self.__rank
 
         reader = SpecReader("asset/spec.txt")
         x = reader.spec["score_pos_x"]
@@ -32,14 +33,14 @@ class Score():
     def CleanUp(self):
         self.__score = 0
 
-    def WriteScore(self, filename):
-        score_list = list()
-        with open(filename, mode='r') as file:
-            for line in file.readlines():
-                score_list.append(int(line))
+    def rank(self):
+        rank = -1
+        for s in range(0,len(score_list)):
+            if self.__score > score_list[s]:
+                self.__rank = s
+                break
+        return rank
 
-        score_list.append( self.__score )
-        score_list.sort(reverse=True)
-        with open(filename, mode='w') as file:
-            for i in range(0,3):
-                file.write( str( score_list[i] ) + "\n" )
+    def SaveScore(self, filepath="asset/score.txt"): #テストしやすいように通常利用するパスをデフォルト引数とした
+        with open(filepath, mode='a') as file:
+            file.write( str( self.__score ) + "\n" )

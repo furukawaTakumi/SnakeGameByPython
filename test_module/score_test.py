@@ -29,28 +29,23 @@ def test_CleanUp():
     print("Score.CleanUp() test pass!")
 
 
-def test_WriteScore():
+def test_SaveScore():
     with open("asset/scoretest.txt", "w") as file:
-        file.write("0\n")
-        file.write("0\n")
-        file.write("0\n")
+        pass
 
     score.CleanUp()
+
     for i in range(0,100):
-        score.WriteScore("asset/scoretest.txt")
         score.CountUp()
+        score.SaveScore("asset/scoretest.txt")
 
     with open("asset/scoretest.txt", "r") as file:
-        count = 99
-        for line in file.readlines():
-            assert count == int(line), "書き込みがうまく行われていません"
-            count -= 1
-    print("Score.WriteScore() test pass!")
+        assert int( file.readlines()[99] ) == 100, "書き込みがうまく行われていません"
 
-
+    print("Score.SaveScore() test pass!")
 
 def DoneAllTest():
     test_init()
     test_CountUp()
     test_CleanUp()
-    test_WriteScore()
+    test_SaveScore()
