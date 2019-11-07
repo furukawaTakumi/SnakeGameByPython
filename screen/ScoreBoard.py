@@ -2,17 +2,29 @@
 class ScoreBoard:
     def __init__(self):
         # スタート画面に表示するスコアリスト生成
-        self.filepath = "asset/score.txt"
         self.__score_list = []
-        self.LoadScore()
 
-    def LoadScore(self):
-        templist = list()
-        with open(self.filepath, mode='r') as file:
-            for s in file.readlines():
-                templist.append(int(s))
+    def Top3(self, filepath="asset/score.txt"):
+        self.__score_list = []
+        with open(filepath, mode='r') as file:
+            for i in range(3):
+                self.__score_list.append( int( file.readline() ) )
+        return self.__score_list
 
-        self.__score_list = templist
+    def RankedRecord(self, filepath="asset/score.txt"):
+        with open(filepath, "r") as file:
+            scores = file.readlines()
+
+        recored = int(scores[-1]) # ファイルの最終行に新しい記録を追加しているからそれをまず取得
+        scores.pop(-1)
+        rank = len(scores)+1
+
+        for score in scores[::-1]:
+            if recored > int(score):
+                rank -= 1
+        return rank
+
+
 
     @property
     def score_list(self):
