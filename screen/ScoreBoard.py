@@ -24,6 +24,16 @@ class ScoreBoard:
                 rank -= 1
         return rank
 
+    def SortScoreAndReWrite(self, filepath="asset/score.txt"):
+        with open(filepath, "r") as file:
+            scores = file.readlines()
+
+        int_scores = [int(i) for i in scores]
+        int_scores.sort(reverse=True)
+        scores = [str(s) for s in int_scores]
+
+        with open(filepath, "w") as file:
+            file.writelines( "\n".join(scores) )
 
 
     @property

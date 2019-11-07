@@ -35,6 +35,15 @@ def test_RankedRecord():
 
     print("ScoreBoard.RankedRecord() test pass!")
 
+def test_SortScoreAndReWrite():
+    SettingScore(100)
+    boared.SortScoreAndReWrite("asset/scoretest.txt")
+    with open("asset/scoretest.txt", "r") as file:
+        top = int( file.readline() )
+    assert top == 100, "ソートが完了されていません"
+
+    print("ScoreBoard.SortScoreAndReWrite() test pass!")
+
 
 def test_top3():
     init()
@@ -52,4 +61,5 @@ def test_top3():
 def DoneAllTest():
     test_top3()
     test_RankedRecord()
+    test_SortScoreAndReWrite()
     pass
