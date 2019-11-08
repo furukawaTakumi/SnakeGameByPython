@@ -2,10 +2,8 @@ import sys
 
 sys.path.append('../')
 
-from screen.ScoreBoard import ScoreBoard
+from screen.Ranking import Ranking
 from game_contents.Score import Score
-
-boared = ScoreBoard()
 
 def init():
     with open("asset/scoretest.txt", "w") as file:
@@ -22,40 +20,40 @@ def SettingScore(score_val):
 
 def test_RankedRecord():
     SettingScore(50)
-    ranking = boared.RankedRecord("asset/scoretest.txt")
-    assert ranking == 18, "ランクが間違っています"
+    rank = Ranking.RankedRecord("asset/scoretest.txt")
+    assert rank == 18, "ランクが間違っています"
 
     SettingScore(78)
-    ranking = boared.RankedRecord("asset/scoretest.txt")
-    assert ranking == 9, "ランクが間違っています"
+    rank = Ranking.RankedRecord("asset/scoretest.txt")
+    assert rank == 9, "ランクが間違っています"
 
     SettingScore(100)
-    ranking = boared.RankedRecord("asset/scoretest.txt")
-    assert ranking == 1, "ランクが間違っています"
+    rank = Ranking.RankedRecord("asset/scoretest.txt")
+    assert rank == 1, "ランクが間違っています"
 
-    print("ScoreBoard.RankedRecord() test pass!")
+    print("Ranking.RankedRecord() test pass!")
 
 def test_SortScoreAndReWrite():
     SettingScore(100)
-    boared.SortScoreAndReWrite("asset/scoretest.txt")
+    Ranking.SortScoreAndReWrite("asset/scoretest.txt")
     with open("asset/scoretest.txt", "r") as file:
         top = int( file.readline() )
     assert top == 100, "ソートが完了されていません"
 
-    print("ScoreBoard.SortScoreAndReWrite() test pass!")
+    print("Ranking.SortScoreAndReWrite() test pass!")
 
 
 def test_top3():
     init()
 
-    top3list = boared.Top3("asset/scoretest.txt")
+    top3list = Ranking.Top3("asset/scoretest.txt")
 
     count = 99
     for i in top3list:
         assert i == count, "トップスリーの値ではないです。"
         count -= 3
 
-    print("ScoreBoard.Top3() test pass!")
+    print("Ranking.Top3() test pass!")
 
 
 def DoneAllTest():
