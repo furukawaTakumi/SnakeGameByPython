@@ -43,4 +43,4 @@ class Score():
 
     def SaveScore(self, filepath="asset/score.txt"): #テストしやすいように通常利用するパスをデフォルト引数とした
         with open(filepath, mode='a') as file:
-            file.write( str( self.__score ) + "\n" )
+            file.write( "\n" + str( self.__score ) )

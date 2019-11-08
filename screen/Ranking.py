@@ -12,7 +12,8 @@ class Ranking:
     def ReadRecord(filepath="asset/score.txt"):
         with open(filepath, "r") as file:
             scores = file.readlines()
-        return scores[len(scores)-1]
+        print(scores)
+        return int(scores[len(scores)-1])
 
     @staticmethod
     def RankedRecord(filepath="asset/score.txt"):
@@ -20,8 +21,7 @@ class Ranking:
             scores = file.readlines()
 
         recored = int(scores[-1]) # ファイルの最終行に新しい記録を追加しているからそれをまず取得
-        scores.pop(-1)
-        rank = len(scores)+1
+        rank = len(scores)
 
         for score in scores[::-1]:
             if recored > int(score):
@@ -35,6 +35,7 @@ class Ranking:
 
         int_scores = [int(i) for i in scores]
         int_scores.sort(reverse=True)
+        print(int_scores)
         scores = [str(s) for s in int_scores]
 
         with open(filepath, "w") as file:
