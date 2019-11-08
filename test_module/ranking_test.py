@@ -18,6 +18,12 @@ def SettingScore(score_val):
         score.CountUp()
     score.SaveScore("asset/scoretest.txt")
 
+def test_ReadRecord():
+    init()
+    assert int(Ranking.ReadRecord("asset/scoretest.txt")) == 3, "スコアを正しく取得することができていません"
+    print("Ranking.ReadRecord() test pass!")
+
+
 def test_RankedRecord():
     SettingScore(50)
     rank = Ranking.RankedRecord("asset/scoretest.txt")
@@ -60,4 +66,5 @@ def DoneAllTest():
     test_top3()
     test_RankedRecord()
     test_SortScoreAndReWrite()
+    test_ReadRecord()
     pass

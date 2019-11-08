@@ -9,6 +9,12 @@ class Ranking:
         return score_list
 
     @staticmethod
+    def ReadRecord(filepath="asset/score.txt"):
+        with open(filepath, "r") as file:
+            scores = file.readlines()
+        return scores[len(scores)-1]
+
+    @staticmethod
     def RankedRecord(filepath="asset/score.txt"):
         with open(filepath, "r") as file:
             scores = file.readlines()
