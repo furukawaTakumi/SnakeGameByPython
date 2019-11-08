@@ -6,7 +6,7 @@ sys.path.append('../')
 from game_contents.GameOverJudgement import GameOverJudgement
 from game_contents.SpecReader import SpecReader
 
-spec = SpecReader("asset/spec.txt")
+spec = SpecReader("assets/spec.txt")
 field_size = ( spec.spec["fieldrow"], spec.spec["fieldcolmun"] )
 judgement = None
 

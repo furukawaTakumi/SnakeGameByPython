@@ -10,7 +10,7 @@ score = Score()
 def test_init():
     assert score.score == 0, "スコアの初期化がうまくいっていません"
 
-    reader = SpecReader("asset/spec.txt")
+    reader = SpecReader("assets/spec.txt")
     pos = (reader.spec["score_pos_x"], reader.spec["score_pos_y"])
     assert pos[0] == score.pos[0], "スコアの初期位置xが間違っています"
     assert pos[1] == score.pos[1], "スコアの初期位置yが間違っています"
@@ -30,17 +30,17 @@ def test_CleanUp():
 
 
 def test_SaveScore():
-    with open("asset/scoretest.txt", "w") as file:
+    with open("assets/scoretest.txt", "w") as file:
         pass
 
     score.CleanUp()
 
-    for i in range(0,100):
+    for i in range(1,100):
         score.CountUp()
-        score.SaveScore("asset/scoretest.txt")
+        score.SaveScore("assets/scoretest.txt")
 
-    with open("asset/scoretest.txt", "r") as file:
-        assert int( file.readlines()[99] ) == 100, "書き込みがうまく行われていません"
+    with open("assets/scoretest.txt", "r") as file:
+        assert int( file.readlines()[99] ) == 99, "書き込みがうまく行われていません"
 
     print("Score.SaveScore() test pass!")
 

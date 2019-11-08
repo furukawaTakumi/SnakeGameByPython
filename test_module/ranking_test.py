@@ -6,9 +6,11 @@ from screen.Ranking import Ranking
 from game_contents.Score import Score
 
 def init():
-    with open("asset/scoretest.txt", "w") as file:
+    with open("assets/scoretest.txt", "w") as file:
+        lis = list()
         for i in range(99, 0, -3):
-            file.write(str(i) + "\n")
+            lis.append( str(i) )
+        file.writelines("\n".join(lis))
 
 def SettingScore(score_val):
     init()
@@ -16,33 +18,33 @@ def SettingScore(score_val):
     score = Score()
     for i in range(score_val):
         score.CountUp()
-    score.SaveScore("asset/scoretest.txt")
+    score.SaveScore("assets/scoretest.txt")
 
 def test_ReadRecord():
     init()
-    assert int(Ranking.ReadRecord("asset/scoretest.txt")) == 3, "スコアを正しく取得することができていません"
+    assert int(Ranking.ReadRecord("assets/scoretest.txt")) == 3, "スコアを正しく取得することができていません"
     print("Ranking.ReadRecord() test pass!")
 
 
 def test_RankedRecord():
     SettingScore(50)
-    rank = Ranking.RankedRecord("asset/scoretest.txt")
+    rank = Ranking.RankedRecord("assets/scoretest.txt")
     assert rank == 18, "ランクが間違っています"
 
     SettingScore(78)
-    rank = Ranking.RankedRecord("asset/scoretest.txt")
+    rank = Ranking.RankedRecord("assets/scoretest.txt")
     assert rank == 9, "ランクが間違っています"
 
     SettingScore(100)
-    rank = Ranking.RankedRecord("asset/scoretest.txt")
+    rank = Ranking.RankedRecord("assets/scoretest.txt")
     assert rank == 1, "ランクが間違っています"
 
     print("Ranking.RankedRecord() test pass!")
 
 def test_SortScoreAndReWrite():
     SettingScore(100)
-    Ranking.SortScoreAndReWrite("asset/scoretest.txt")
-    with open("asset/scoretest.txt", "r") as file:
+    Ranking.SortScoreAndReWrite("assets/scoretest.txt")
+    with open("assets/scoretest.txt", "r") as file:
         top = int( file.readline() )
     assert top == 100, "ソートが完了されていません"
 
@@ -52,7 +54,7 @@ def test_SortScoreAndReWrite():
 def test_top3():
     init()
 
-    top3list = Ranking.Top3("asset/scoretest.txt")
+    top3list = Ranking.Top3("assets/scoretest.txt")
 
     count = 99
     for i in top3list:

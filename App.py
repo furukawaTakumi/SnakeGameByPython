@@ -4,7 +4,7 @@ from screen.ScreenCreator import CreateGameOverScreen
 from GameStatus import GameStatus
 from game_contents.GameController import GameController
 
-resourse_path = "asset/course.pyxres"
+resourse_path = "assets/course.pyxres"
 
 class App:
     def __init__(self):
@@ -35,7 +35,7 @@ class App:
             pyxel.mouse(True)
             if self.gameoverScreen.isBtnClicked("Restart?"):
                 self.gameController = GameController()
-                
+
                 self.now_status = GameStatus.GAME
                 pyxel.mouse(False)
 

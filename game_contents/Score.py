@@ -10,7 +10,7 @@ class Score():
         self.__disp_str = "SCORE: {}"
         # self.__rank
 
-        reader = SpecReader("asset/spec.txt")
+        reader = SpecReader("assets/spec.txt")
         x = reader.spec["score_pos_x"]
         y = reader.spec["score_pos_y"]
         self.__pos = (x, y)
@@ -41,6 +41,6 @@ class Score():
                 break
         return rank
 
-    def SaveScore(self, filepath="asset/score.txt"): #テストしやすいように通常利用するパスをデフォルト引数とした
+    def SaveScore(self, filepath="assets/score.txt"): #テストしやすいように通常利用するパスをデフォルト引数とした
         with open(filepath, mode='a') as file:
             file.write( "\n" + str( self.__score ) )

@@ -1,7 +1,7 @@
 
 class Ranking:
     @staticmethod
-    def Top3(filepath="asset/score.txt"): #staticmethodにしたらデフォルト引数が固定化されてしまった
+    def Top3(filepath="assets/score.txt"): #staticmethodにしたらデフォルト引数が固定化されてしまった
         score_list = []
         with open(filepath, mode='r') as file:
             for i in range(3):
@@ -9,14 +9,13 @@ class Ranking:
         return score_list
 
     @staticmethod
-    def ReadRecord(filepath="asset/score.txt"):
+    def ReadRecord(filepath="assets/score.txt"):
         with open(filepath, "r") as file:
             scores = file.readlines()
-        print(scores)
         return int(scores[len(scores)-1])
 
     @staticmethod
-    def RankedRecord(filepath="asset/score.txt"):
+    def RankedRecord(filepath="assets/score.txt"):
         with open(filepath, "r") as file:
             scores = file.readlines()
 
@@ -29,13 +28,13 @@ class Ranking:
         return rank
 
     @staticmethod
-    def SortScoreAndReWrite(filepath="asset/score.txt"):
+    def SortScoreAndReWrite(filepath="assets/score.txt"):
         with open(filepath, "r") as file:
             scores = file.readlines()
 
         int_scores = [int(i) for i in scores]
         int_scores.sort(reverse=True)
-        print(int_scores)
+
         scores = [str(s) for s in int_scores]
 
         with open(filepath, "w") as file:

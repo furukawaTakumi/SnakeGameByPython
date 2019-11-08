@@ -10,7 +10,7 @@ from .GameOverJudgement import GameOverJudgement
 
 class GameController():
     def __init__(self):
-        reader = SpecReader("asset/spec.txt")
+        reader = SpecReader("assets/spec.txt")
         snake_pos = {
             "x": reader.spec["init_snake_pos_x"],
             "y": reader.spec["init_snake_pos_y"]

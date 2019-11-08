@@ -9,7 +9,7 @@ from game_contents.Field import Field
 from game_contents.ParcelState import ParcelState as pState
 from game_contents.SpecReader import SpecReader
 
-reader = SpecReader("asset/spec.txt")
+reader = SpecReader("assets/spec.txt")
 row = reader.spec["fieldrow"]
 column = reader.spec["fieldcolmun"]
 field = Field( (row,column) )
