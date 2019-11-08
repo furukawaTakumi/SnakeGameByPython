@@ -10,13 +10,14 @@ from .Celebratory import Celebratory
 class GameOverScreen(Screen):
     def __init__(self, title, button):
         super().__init__(title, button)
+        self.score_rank = 0
         pass
 
     def PrepareDisplay(self):
         self.score_rank = Ranking.RankedRecord()
         Ranking.SortScoreAndReWrite()
 
-    def ScreenUpdate(self, score):
+    def ScreenUpdate(self):
         super().ScreenUpdate()
         celebrate_txt = TextStruct( Celebratory.SelectCelebrateMsg(self.score_rank), 10)
         myrecord = TextStruct( "record: " + str( self.score_rank ), 7 )

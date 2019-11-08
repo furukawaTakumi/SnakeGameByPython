@@ -13,17 +13,40 @@ class App:
         pyxel.load(resourse_path)
         self.now_status = GameStatus.START
         self.startScreen = CreateStartScreen()
+        self.startScreen.PrepareDisplay()
         self.gameoverScreen = CreateGameOverScreen()
         self.gameController = GameController()
         pyxel.run(self.update, self.draw)
         pass
 
     def update(self):
-        if self.now_status == GameStatus.GAME:
+        if self.now_status == GameStatus.START:
+            if self.startScreen.isBtnClicked("Start!"):
+                self.now_status = GameStatus.GAME
+                pyxel.mouse(False)
+
+        elif self.now_status == GameStatus.GAME:
             self.gameController.UpdateData()
             if self.gameController.CheckGameOver():
                 self.gameoverScreen.PrepareDisplay()
                 self.now_status = GameStatus.GAMEOVER
+
+        elif self.now_status == GameStatus.GAMEOVER:
+            pyxel.mouse(True)
+            if self.gameoverScreen.isBtnClicked("Restart?"):
+                self.gameController = GameController()
+                
+                self.now_status = GameStatus.GAME
+                pyxel.mouse(False)
+
+            elif self.gameoverScreen.isBtnClicked("toTitle"):
+                self.gameController = GameController()
+
+                self.gameoverScreen.PrepareDisplay()
+                self.startScreen.PrepareDisplay()
+
+                self.now_status = GameStatus.START
+                pyxel.mouse(True)
         pass
 
     def draw(self):
@@ -31,22 +54,13 @@ class App:
 
         if self.now_status == GameStatus.START:
             self.startScreen.ScreenUpdate()
-            if self.startScreen.isBtnClicked():
-                self.now_status = GameStatus.GAME
-                pyxel.mouse(False)
 
         elif self.now_status == GameStatus.GAME:
             self.gameController.UpdateDisplay()
 
         elif self.now_status == GameStatus.GAMEOVER:
-            self.gameoverScreen.ScreenUpdate(self.gameController.ScoreWhenGameOver())
-            pyxel.mouse(True)
-            if self.gameoverScreen.isBtnClicked():
-                self.now_status = GameStatus.GAME
-                self.gameController = GameController()
-                pyxel.mouse(False)
-            pass
+            self.gameoverScreen.ScreenUpdate()
 
-        pass
 
-App()
+if __name__ == "__main__":
+    App()

@@ -7,17 +7,26 @@ class Screen:
     title: TextStruct
     button: ButtonStruct
     """
-    def __init__(self, title, button):
+    def __init__(self, title, buttons):
         self.title = title
         self.title_pos = (pyxel.width//2 - title.size[0]//2, pyxel.height//4)
-        self.btn_pos = (pyxel.width//2 - button.size[0]//2, pyxel.height//4*3)
         self.btn_clicked = False
-        self.button = ScreenButton( button, self.btn_pos )
+
+        self.button_dic = {}
+        onestep = pyxel.width//(len(buttons)+1)
+        for btn in buttons:
+            btn_pos = (onestep-btn.size[0]//2, pyxel.height//4*3)
+            self.button_dic[btn.name] = ScreenButton( btn, btn_pos )
+            onestep += onestep
 
     def ScreenUpdate(self):
         pyxel.text(self.title_pos[0], self.title_pos[1], self.title.name, self.title.col)
-        self.btn_clicked = self.button.isClicked()
+        for btn in self.button_dic.values():
+            btn.Draw()
         pass
 
-    def isBtnClicked(self):
-        return self.btn_clicked
+    def PrepareDisplay(self):
+        pass
+
+    def isBtnClicked(self, btn_name):
+        return self.button_dic[btn_name].isClicked()

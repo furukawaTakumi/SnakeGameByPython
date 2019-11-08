@@ -12,6 +12,7 @@ class StartScreen(Screen):
     def PrepareDisplay(self):
         self.__score_top3 = Ranking.Top3()
 
+
     def ScreenUpdate(self):
         super().ScreenUpdate()
         first = TextStruct( "1st : " +  str(self.__score_top3[0]), 7 )
