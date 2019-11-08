@@ -22,6 +22,7 @@ class App:
         if self.now_status == GameStatus.GAME:
             self.gameController.UpdateData()
             if self.gameController.CheckGameOver():
+                self.gameoverScreen.PrepareDisplay()
                 self.now_status = GameStatus.GAMEOVER
         pass
 
