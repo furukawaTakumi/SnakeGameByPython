@@ -60,6 +60,3 @@ class GameController():
             self.__score.SaveScore()
             return True
         return False
-
-    def ScoreWhenGameOver(self):
-        return self.__score.score
