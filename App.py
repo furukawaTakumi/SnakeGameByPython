@@ -1,6 +1,7 @@
 import pyxel
-from screen.ScreenCreator import CreateStartScreen
-from screen.ScreenCreator import CreateGameOverScreen
+from screen.ScreenDirector import ScreenDirector
+from screen.StartScreenBuilder import StartScreenBuilder
+from screen.GameOverScreenBuilder import GameOverScreenBuilder
 from GameStatus import GameStatus
 from game_contents.GameController import GameController
 
@@ -12,10 +13,21 @@ class App:
         pyxel.mouse(True)
         pyxel.load(resourse_path)
         self.now_status = GameStatus.START
-        self.startScreen = CreateStartScreen()
+
+        # 画面の生成
+        startScreenBuilder = StartScreenBuilder()
+        director = ScreenDirector(startScreenBuilder)
+        director.build()
+        self.startScreen = startScreenBuilder.GetBuildInstance()
         self.startScreen.PrepareDisplay()
-        self.gameoverScreen = CreateGameOverScreen()
+
+        gameoverScreenBuilder = GameOverScreenBuilder()
+        director = ScreenDirector(gameoverScreenBuilder)
+        director.build()
+        self.gameoverScreen = gameoverScreenBuilder.GetBuildInstance()
+
         self.gameController = GameController()
+
         pyxel.run(self.update, self.draw)
         pass
 
